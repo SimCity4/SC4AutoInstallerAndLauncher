@@ -20,16 +20,16 @@ Retry:      If bgwComputeMD5.CancellationPending = True Then e.Cancel = True : E
             Dim File As New IO.FileStream(DataFilesMD5(i), IO.FileMode.Open)
             If i = 0 Then bgwComputeMD5.ReportProgress(1) Else bgwComputeMD5.ReportProgress(i / 2)
             If BitConverter.ToString(MD5CSP.ComputeHash(File)).Replace("-", "") <> DataFilesMD5(i + 1) Then
-Ignore:         Select Case MessageBox.Show("文件 " & DataFilesMD5(i) & " 不完整！", "错误", MessageBoxButtons.AbortRetryIgnore, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1)
+                Select Case MessageBox.Show("文件 " & DataFilesMD5(i) & " 不完整！", "错误", MessageBoxButtons.AbortRetryIgnore, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1)
                     Case Windows.Forms.DialogResult.Abort
                         Environment.Exit(0)
                     Case Windows.Forms.DialogResult.Retry
-                        GoTo Retry
+                        File.Close() : GoTo Retry
                     Case Windows.Forms.DialogResult.Ignore
                         If MessageBox.Show("确定忽略此错误吗？" & vbCrLf & "文件不完整可能会导致安装失败。", "警告", MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation) = Windows.Forms.DialogResult.Yes Then Continue For Else GoTo Ignore
                 End Select
             End If
-            File.Close()
+Ignore:     File.Close()
         Next
     End Sub
 

@@ -112,11 +112,11 @@ Partial Class frmAbout
         '
         Me.lblName.AutoSize = True
         Me.lblName.Font = New System.Drawing.Font("微软雅黑", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(134, Byte))
-        Me.lblName.Location = New System.Drawing.Point(142, 20)
+        Me.lblName.Location = New System.Drawing.Point(139, 20)
         Me.lblName.Name = "lblName"
-        Me.lblName.Size = New System.Drawing.Size(189, 25)
+        Me.lblName.Size = New System.Drawing.Size(219, 25)
         Me.lblName.TabIndex = 0
-        Me.lblName.Text = "豪华版 自动安装程序"
+        Me.lblName.Text = "模拟城市4 自动安装程序"
         Me.lblName.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         '
         'LogoPictureBox

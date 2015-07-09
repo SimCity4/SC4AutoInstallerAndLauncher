@@ -1,11 +1,9 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <UpdataInfo>
   <AutoInstaller>
-    <LatestVersion>2.1.24</LatestVersion>
+    <LatestVersion>2.1.25</LatestVersion>
     <UpdataDetail>
-下载更新前请先关闭杀软以免误杀！<br />
-如果无法下载更新程序请到http://pan.baidu.com/s/1qWDTWss手动下载更新程序。<br />
-模拟城市4 豪华版 自动安装程序(SC4AutoInstaller) 2.1.24 正式版 (2015-07-09)<br />
+模拟城市4 豪华版 自动安装程序(SC4AutoInstaller) 2.1.25 正式版 (2015-07-09)<br />
 ====================================================================================<br />
 <br />
 新增<br />
@@ -22,16 +20,15 @@
 修复<br />
 ====<br />
 1.修复了如果在安装选项窗口选择添加桌面图标，安装后桌面上的快捷方式无法打开的bug。<br />
-2.修复了如果安装程序的路径里有空格，就无法安装硬盘版模拟城市4、638补丁、640补丁和GOG版模拟城市4的Graphics Rules.sgr文件的bug（感谢虚无中在飘渺发现此bug）。<br />
-3.修复了如果安装程序的路径里有空格，就无法删除638补丁、640补丁、4GB补丁和免CD补丁的bug（感谢虚无中在飘渺发现此bug）。<br />
+2.修复了如果在验证文件完整性时点击某个文件不完整对话框的重试按钮后直接跳过后续验证的bug。<br />
+3.修复了如果安装程序的路径里有空格，就无法安装硬盘版模拟城市4、638补丁、640补丁和GOG版模拟城市4的Graphics Rules.sgr文件的bug（感谢虚无中在飘渺发现此bug）。<br />
+4.修复了如果安装程序的路径里有空格，就无法删除638补丁、640补丁、4GB补丁和免CD补丁的bug（感谢虚无中在飘渺发现此bug）。<br />
     </UpdataDetail>
     <DonwloadLink>http://7xk5r3.com1.z0.glb.clouddn.com/AutoInstallerUpdata.png</DonwloadLink>
   </AutoInstaller>
   <Launcher>
-    <LatestVersion>1.0.18</LatestVersion>
+    <LatestVersion>1.0.19</LatestVersion>
     <UpdataDetail>
-下载更新前请先关闭杀软以免误杀！<br />
-如果无法下载更新程序请到http://pan.baidu.com/s/1hqnLPD6手动下载更新程序。<br />
 模拟城市4 启动器(SC4Launcher) 1.0.19 正式版 (2015-07-09)<br />
 ====================================================================================<br />
 <br />
