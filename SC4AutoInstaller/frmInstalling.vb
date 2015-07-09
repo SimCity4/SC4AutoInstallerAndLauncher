@@ -2,49 +2,32 @@
 
     Private Sub ReportProgress(ByVal result As InstallResult.Result, ByVal item As ListViewItem)
         With ModuleMain.InstallResult
-            If result = InstallResult.Result.Success Then
-                item.ImageKey = "success"
-                Select Case item.Text
-                    Case "DAEMON Tools Lite" : .DAEMONToolsInstallResult = result
-                    Case "638补丁" : ._638PatchInstallResult = result
-                    Case "640补丁" : ._640PatchInstallResult = result
-                    Case "免CD补丁" : .NoCDPatchInstallResult = result
-                    Case "4GB补丁" : ._4GBPatchInstallResult = result
-                    Case "繁体中文语言补丁", "简体中文语言补丁" : .LanguagePatchInstallResult = result
-                    Case "添加开始菜单项" : .AddDesktopIconResult = result
-                    Case "添加桌面图标" : .AddStartMenuItemResult = result
-                    Case Else : If item.Text.Contains("模拟城市4 豪华版") = True Then .SC4InstallResult = result
-                End Select
-            Else
-                item.ImageKey = "fail"
-                Select Case item.Text
-                    Case "DAEMON Tools Lite" : .DAEMONToolsInstallResult = result
-                    Case "638补丁" : ._638PatchInstallResult = result
-                    Case "640补丁" : ._640PatchInstallResult = result
-                    Case "免CD补丁" : .NoCDPatchInstallResult = result
-                    Case "4GB补丁" : ._4GBPatchInstallResult = result
-                    Case "繁体中文语言补丁", "简体中文语言补丁" : .LanguagePatchInstallResult = result
-                    Case "添加开始菜单项" : .AddDesktopIconResult = result
-                    Case "添加桌面图标" : .AddStartMenuItemResult = result
-                    Case Else
-                        If item.Text.Contains("模拟城市4 豪华版") = True Then
-                            For i As Integer = 0 To lvwTask.Items.Count - 1
-                                lvwTask.Items(i).ImageKey = "fail"
-                            Next
-                            .SC4InstallResult = InstallResult.Result.Fail
-                            ._638PatchInstallResult = InstallResult.Result.Fail
-                            ._640PatchInstallResult = InstallResult.Result.Fail
-                            ._4GBPatchInstallResult = InstallResult.Result.Fail
-                            .NoCDPatchInstallResult = InstallResult.Result.Fail
-                            .SC4LauncherInstallResult = InstallResult.Result.Fail
-                            .LanguagePatchInstallResult = InstallResult.Result.Fail
-                            .AddDesktopIconResult = InstallResult.Result.Fail
-                            .AddStartMenuItemResult = InstallResult.Result.Fail
-                            bgwInstall.CancelAsync()
-                        End If
-                End Select
-            End If
-            If item.Index < lvwTask.Items.Count - 1 Then
+            If result = InstallResult.Result.Success Then item.ImageKey = "success" Else item.ImageKey = "fail"
+            Select Case item.Text
+                Case "DAEMON Tools Lite" : .DAEMONToolsInstallResult = result
+                Case "638补丁" : ._638PatchInstallResult = result
+                Case "640补丁" : ._640PatchInstallResult = result
+                Case "免CD补丁" : .NoCDPatchInstallResult = result
+                Case "4GB补丁" : ._4GBPatchInstallResult = result
+                Case "繁体中文语言补丁", "简体中文语言补丁" : .LanguagePatchInstallResult = result
+                Case "添加开始菜单项" : .AddDesktopIconResult = result
+                Case "添加桌面图标" : .AddStartMenuItemResult = result
+                Case Else
+                    If item.Text.Contains("模拟城市4 豪华版") = True And result = InstallResult.Result.Success Then
+                        .SC4InstallResult = result
+                    ElseIf item.Text.Contains("模拟城市4 豪华版") = True And result = InstallResult.Result.Fail Then
+                        For i As Integer = 0 To lvwTask.Items.Count - 1
+                            lvwTask.Items(i).ImageKey = "fail"
+                        Next
+                        .SC4InstallResult = InstallResult.Result.Fail
+                        ._638PatchInstallResult = InstallResult.Result.Fail : ._640PatchInstallResult = InstallResult.Result.Fail
+                        ._4GBPatchInstallResult = InstallResult.Result.Fail : .NoCDPatchInstallResult = InstallResult.Result.Fail
+                        .SC4LauncherInstallResult = InstallResult.Result.Fail : .LanguagePatchInstallResult = InstallResult.Result.Fail
+                        .AddDesktopIconResult = InstallResult.Result.Fail : .AddStartMenuItemResult = InstallResult.Result.Fail
+                        bgwInstall.CancelAsync()
+                    End If
+            End Select
+            If item.Text.Contains("模拟城市4 豪华版") = False And item.Index < lvwTask.Items.Count - 1 Then 'notice
                 lvwTask.Items(item.Index + 1).ImageKey = "installing"
             End If
         End With
@@ -58,18 +41,16 @@
         'Next
         'Threading.Thread.Sleep(1000)
         'ReportProgress(InstallResult.Result.Fail, lvwTask.FindItemWithText("模拟城市4 豪华版"))
-        My.Computer.FileSystem.CopyFile(Application.ExecutablePath, ModuleMain.InstallOptions.SC4InstallDir & "\SC4AutoInstaller.exe")
-        ModuleInstallModule.SetControlPanelProgramItemRegValue()
+        My.Computer.FileSystem.CopyFile(Application.ExecutablePath, ModuleMain.InstallOptions.SC4InstallDir & "\SC4AutoInstaller.exe", True)
         With ModuleMain.InstallOptions
             If IsNothing(ModuleMain.InstalledModule) = True Then
                 If .IsInstallDAEMONTools = True Then ReportProgress(ModuleInstallModule.InstallDAEMONTools(), lvwTask.FindItemWithText("DAEMON Tools Lite"))
                 If .SC4Type = InstallOptions.SC4InstallType.ISO Then
                     ReportProgress(ModuleInstallModule.InstallSC4(InstallOptions.SC4InstallType.ISO), lvwTask.FindItemWithText("模拟城市4 豪华版 镜像版"))
-                    ModuleInstallModule.SetControlPanelProgramItemRegValue()
                 ElseIf .SC4Type = InstallOptions.SC4InstallType.NoInstall Then
-                    ReportProgress(ModuleInstallModule.InstallSC4(InstallOptions.SC4InstallType.NoInstall), lvwTask.FindItemWithText("模拟城市4 豪华版 硬盘版"))
-                    ModuleInstallModule.SetControlPanelProgramItemRegValue() : ModuleInstallModule.SetNoInstallSC4RegValue()
+                    ReportProgress(ModuleInstallModule.InstallSC4(InstallOptions.SC4InstallType.NoInstall), lvwTask.FindItemWithText("模拟城市4 豪华版 硬盘版")) : ModuleInstallModule.SetNoInstallSC4RegValue()
                 End If
+                ModuleInstallModule.SetControlPanelProgramItemRegValue()
             End If
             If bgwInstall.CancellationPending = True Then Exit Sub
             If .IsInstall638Patch = True Then ReportProgress(ModuleInstallModule.Install638Patch(), lvwTask.FindItemWithText("638补丁"))
