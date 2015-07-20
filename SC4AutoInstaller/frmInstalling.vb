@@ -30,7 +30,9 @@
             End Select
         End With
     End Sub
-
+    Private Sub bgwComputeMD5_ProgressChanged(sender As Object, e As System.ComponentModel.ProgressChangedEventArgs) Handles bgwInstall.ProgressChanged
+        ProgressBar1.Value = e.ProgressPercentage
+    End Sub
     Private Sub bgwInstall_DoWork(sender As Object, e As System.ComponentModel.DoWorkEventArgs) Handles bgwInstall.DoWork
         'lvwTask.Items(0).ImageKey = "installing"
         'For i As Integer = 0 To lvwTask.Items.Count - 1
@@ -232,4 +234,11 @@
         Text &= " " & My.Application.Info.Version.Major & "." & My.Application.Info.Version.Minor & "." & My.Application.Info.Version.Revision & " By n0099"
     End Sub
 
+    Private Sub picSC4_Click(sender As Object, e As EventArgs) Handles picSC4.Click
+
+    End Sub
+
+    Private Sub ProgressBar1_Click(sender As Object, e As EventArgs) Handles ProgressBar1.Click
+
+    End Sub
 End Class

@@ -44,6 +44,7 @@ Partial Class frmInstalling
         Me.bgwInstall = New System.ComponentModel.BackgroundWorker()
         Me.picSC4 = New System.Windows.Forms.PictureBox()
         Me.tmrPic = New System.Windows.Forms.Timer(Me.components)
+        Me.ProgressBar1 = New System.Windows.Forms.ProgressBar()
         CType(Me.picSC4, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
@@ -108,7 +109,7 @@ Partial Class frmInstalling
         '
         Me.picSC4.Location = New System.Drawing.Point(194, 0)
         Me.picSC4.Name = "picSC4"
-        Me.picSC4.Size = New System.Drawing.Size(640, 480)
+        Me.picSC4.Size = New System.Drawing.Size(640, 439)
         Me.picSC4.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage
         Me.picSC4.TabIndex = 12
         Me.picSC4.TabStop = False
@@ -118,11 +119,19 @@ Partial Class frmInstalling
         Me.tmrPic.Enabled = True
         Me.tmrPic.Interval = 5000
         '
+        'ProgressBar1
+        '
+        Me.ProgressBar1.Location = New System.Drawing.Point(12, 445)
+        Me.ProgressBar1.Name = "ProgressBar1"
+        Me.ProgressBar1.Size = New System.Drawing.Size(810, 23)
+        Me.ProgressBar1.TabIndex = 13
+        '
         'frmInstalling
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 12.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(834, 480)
+        Me.Controls.Add(Me.ProgressBar1)
         Me.Controls.Add(Me.lblTitle)
         Me.Controls.Add(Me.picSC4)
         Me.Controls.Add(Me.lvwTask)
@@ -143,4 +152,5 @@ Partial Class frmInstalling
     Friend WithEvents imgTask As System.Windows.Forms.ImageList
     Friend WithEvents picSC4 As System.Windows.Forms.PictureBox
     Friend WithEvents tmrPic As System.Windows.Forms.Timer
+    Friend WithEvents ProgressBar1 As ProgressBar
 End Class
