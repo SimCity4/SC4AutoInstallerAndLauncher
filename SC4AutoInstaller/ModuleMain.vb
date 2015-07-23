@@ -1,7 +1,11 @@
-﻿Module ModuleMain
+﻿''' <summary>ModuleMain 模块提供各种类的实例和Windows API方法、结构和常数</summary>
+Module ModuleMain
 
-    Public InstalledModule As New InstalledModule
+    ''' <summary>一个用于获取或设置安装选项的类的实例</summary>
     Public InstallOptions As New InstallOptions
+    ''' <summary>一个用于获取或设置已安装的组件的类的实例</summary>
+    Public InstalledModule As New InstalledModule
+    ''' <summary>一个用于获取或设置安装结果的类的实例</summary>
     Public InstallResult As New InstallResult
     Public Declare Function GetSystemMenu Lib "user32" (ByVal hWnd As IntPtr, ByVal bRevert As Boolean) As Integer
     Public Declare Function RemoveMenu Lib "user32" (ByVal hMenu As IntPtr, ByVal uPosition As UInt32, ByVal uFlags As UInt32) As Integer
