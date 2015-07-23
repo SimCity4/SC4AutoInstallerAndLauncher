@@ -1,12 +1,20 @@
 ﻿Public Class frmChangeModuleOptions
 
+    ''' <summary>指定安装组件列表框项的图标</summary>
     Private Enum NodeCheckedState
+        ''' <summary>已选择的复选框</summary>
         checked
+        ''' <summary>未选择的复选框</summary>
         unchecked
+        ''' <summary>已选择的单选框</summary>
         radiochecked
+        ''' <summary>未选择的单选框</summary>
         radiounchecked
     End Enum
 
+    ''' <summary>获取安装组件列表框里项的图标</summary>
+    ''' <param name="NodeName">安装组件列表框项的Name属性值</param>
+    ''' <returns>返回 NodeCheckedState 枚举的值之一</returns>
     Private Function GetNodeChecked(ByVal NodeName As String) As NodeCheckedState
         With tvwOptions
             Select Case .Nodes.Find(NodeName, True)(0).ImageKey
@@ -24,6 +32,9 @@
         End With
     End Function
 
+    ''' <summary>设置安装组件列表框里项的图标</summary>
+    ''' <param name="NodeName">安装组件列表框项的Name属性值</param>
+    ''' <param name="value">要设置的图标，必须为 NodeCheckedState 枚举的值之一</param>
     Private Sub SetNodeChecked(ByVal NodeName As String, ByVal value As NodeCheckedState)
         With tvwOptions
             Select Case value

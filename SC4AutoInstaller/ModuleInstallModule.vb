@@ -14,7 +14,7 @@ Module ModuleInstallModule
 
     ''' <summary>安装DAEMON Tools Lite</summary>
     ''' <returns>InstallResult.Result 的值之一，如果安装成功，则为InstallResult.Result.Success；否则为InstallResult.Result.Fail</returns>
-    ''' ''' <remarks>安装路径为 ModuleMain.InstallOptions.DAEMONInstallDir</remarks>
+    ''' <remarks>安装路径为 ModuleMain.InstallOptions.DAEMONInstallDir</remarks>
     Public Function InstallDAEMONTools() As InstallResult.Result
         Try
             Do Until Not IsFileUsing("Data\DAEMON Tools Lite 5.0.exe") : Loop
