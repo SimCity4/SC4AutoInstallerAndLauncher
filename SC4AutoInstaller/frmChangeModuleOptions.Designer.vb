@@ -1,5 +1,5 @@
 ﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
-Partial Class frmModuleChangeOption
+Partial Class frmChangeModuleOptions
     Inherits System.Windows.Forms.Form
 
     'Form 重写 Dispose，以清理组件列表。
@@ -33,13 +33,14 @@ Partial Class frmModuleChangeOption
         Dim TreeNode8 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("简体中文")
         Dim TreeNode9 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("英语")
         Dim TreeNode10 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("语言补丁", New System.Windows.Forms.TreeNode() {TreeNode7, TreeNode8, TreeNode9})
-        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmModuleChangeOption))
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmChangeModuleOptions))
         Me.tvwOptions = New System.Windows.Forms.TreeView()
         Me.imgOptions = New System.Windows.Forms.ImageList(Me.components)
         Me.lblTitle = New System.Windows.Forms.Label()
         Me.btnBack = New System.Windows.Forms.Button()
-        Me.btnNext = New System.Windows.Forms.Button()
+        Me.btnInstall = New System.Windows.Forms.Button()
         Me.btnCancel = New System.Windows.Forms.Button()
+        Me.lblTitle2 = New System.Windows.Forms.Label()
         Me.SuspendLayout()
         '
         'tvwOptions
@@ -47,7 +48,7 @@ Partial Class frmModuleChangeOption
         Me.tvwOptions.ImageKey = "rootnodebackground.png"
         Me.tvwOptions.ImageList = Me.imgOptions
         Me.tvwOptions.ItemHeight = 15
-        Me.tvwOptions.Location = New System.Drawing.Point(12, 51)
+        Me.tvwOptions.Location = New System.Drawing.Point(12, 71)
         Me.tvwOptions.Name = "tvwOptions"
         TreeNode1.ImageKey = "unchecked"
         TreeNode1.Name = "638补丁"
@@ -93,7 +94,7 @@ Partial Class frmModuleChangeOption
         Me.tvwOptions.SelectedImageIndex = 0
         Me.tvwOptions.ShowPlusMinus = False
         Me.tvwOptions.ShowRootLines = False
-        Me.tvwOptions.Size = New System.Drawing.Size(440, 221)
+        Me.tvwOptions.Size = New System.Drawing.Size(440, 199)
         Me.tvwOptions.TabIndex = 1
         '
         'imgOptions
@@ -126,14 +127,14 @@ Partial Class frmModuleChangeOption
         Me.btnBack.Text = "< 返回(&B)"
         Me.btnBack.UseVisualStyleBackColor = True
         '
-        'btnNext
+        'btnInstall
         '
-        Me.btnNext.Location = New System.Drawing.Point(286, 287)
-        Me.btnNext.Name = "btnNext"
-        Me.btnNext.Size = New System.Drawing.Size(80, 23)
-        Me.btnNext.TabIndex = 3
-        Me.btnNext.Text = "确定(&N) >"
-        Me.btnNext.UseVisualStyleBackColor = True
+        Me.btnInstall.Location = New System.Drawing.Point(286, 287)
+        Me.btnInstall.Name = "btnInstall"
+        Me.btnInstall.Size = New System.Drawing.Size(80, 23)
+        Me.btnInstall.TabIndex = 3
+        Me.btnInstall.Text = "确定(&N) >"
+        Me.btnInstall.UseVisualStyleBackColor = True
         '
         'btnCancel
         '
@@ -145,22 +146,32 @@ Partial Class frmModuleChangeOption
         Me.btnCancel.Text = "取消(&C)"
         Me.btnCancel.UseVisualStyleBackColor = True
         '
-        'frmModuleChangeOption
+        'lblTitle2
         '
-        Me.AcceptButton = Me.btnNext
+        Me.lblTitle2.AutoSize = True
+        Me.lblTitle2.Location = New System.Drawing.Point(12, 45)
+        Me.lblTitle2.Name = "lblTitle2"
+        Me.lblTitle2.Size = New System.Drawing.Size(425, 12)
+        Me.lblTitle2.TabIndex = 5
+        Me.lblTitle2.Text = "请选择要安装的组件，并取消选择要卸载的组件，单击[确定 (N) >]按钮继续。"
+        '
+        'frmChangeModuleOptions
+        '
+        Me.AcceptButton = Me.btnInstall
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 12.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.CancelButton = Me.btnCancel
         Me.ClientSize = New System.Drawing.Size(464, 322)
+        Me.Controls.Add(Me.lblTitle2)
         Me.Controls.Add(Me.tvwOptions)
         Me.Controls.Add(Me.lblTitle)
         Me.Controls.Add(Me.btnBack)
-        Me.Controls.Add(Me.btnNext)
+        Me.Controls.Add(Me.btnInstall)
         Me.Controls.Add(Me.btnCancel)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.MaximizeBox = False
-        Me.Name = "frmModuleChangeOption"
+        Me.Name = "frmChangeModuleOptions"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "模拟城市4 豪华版 自动安装程序"
         Me.ResumeLayout(False)
@@ -171,6 +182,7 @@ Partial Class frmModuleChangeOption
     Friend WithEvents imgOptions As System.Windows.Forms.ImageList
     Friend WithEvents lblTitle As System.Windows.Forms.Label
     Friend WithEvents btnBack As System.Windows.Forms.Button
-    Friend WithEvents btnNext As System.Windows.Forms.Button
+    Friend WithEvents btnInstall As System.Windows.Forms.Button
     Friend WithEvents btnCancel As System.Windows.Forms.Button
+    Friend WithEvents lblTitle2 As System.Windows.Forms.Label
 End Class

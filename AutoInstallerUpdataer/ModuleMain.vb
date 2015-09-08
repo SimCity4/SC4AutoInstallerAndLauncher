@@ -3,7 +3,7 @@
     Sub Main()
         With My.Computer.FileSystem
             Console.Write("正在安装更新" & vbCrLf)
-            If .FileExists("\Apps\SimCity 4.exe") = False Then
+            If .FileExists("Apps\SimCity 4.exe") = False Then
                 '1.5.30
                 If .DirectoryExists("Data\Image") = True Then .RenameDirectory("Data\Image", "CD")
                 If .DirectoryExists("Data\Patch\No-CD") = True Then .RenameDirectory("Data\Patch\No-CD", "NoCD")
@@ -29,15 +29,27 @@
                 End If
                 If .FileExists("Data\Patch\638.EXE") = True Then .DeleteFile("Data\Patch\638.EXE")
                 If .FileExists("Data\Patch\640.exe") = True Then .DeleteFile("Data\Patch\640.exe")
+                '2.4.10
+                If .DirectoryExists("Data\CD") = True Then .MoveDirectory("Data\CD", "Data\SC4\CD")
+                If .FileExists("Data\SC4.rar") = True Then .MoveFile("Data\SC4.rar", "Data\SC4\NoInstall.rar")
+                If .FileExists("Data\SC4\CD\SC4DELUXE CD1.mdf") = True Then .RenameFile("Data\SC4\CD\SC4DELUXE CD1.mdf", "Data\SC4\CD\CD1.mdf")
+                If .FileExists("Data\SC4\CD\SC4DELUXE CD1.mds") = True Then .RenameFile("Data\SC4\CD\SC4DELUXE CD1.mds", "Data\SC4\CD\CD1.mds")
+                If .FileExists("Data\SC4\CD\SC4DELUXE CD2.mdf") = True Then .RenameFile("Data\SC4\CD\SC4DELUXE CD2.mdf", "Data\SC4\CD\CD2.mdf")
+                If .FileExists("Data\SC4\CD\SC4DELUXE CD2.mds") = True Then .RenameFile("Data\SC4\CD\SC4DELUXE CD2.mds", "Data\SC4\CD\CD2.mds")
+                '2.5.21
+                If .FileExists("Data\SC4\NoInstall.rar") = True Or .FileExists("Data\Patch\638.rar") = True Or .FileExists("Data\Patch\640.rar") = True Then
+                    Console.WriteLine("请到http://pan.baidu.com/s/1bnezR7h重下Data\SC4\NoInstall.7z、Data\Patch\638.7z和Data\Patch\640.7z文件！" & vbCrLf)
+                End If
+                '2.6.3?
+                If .FileExists("Data\7z.exe") Then .DeleteFile("Data\7z.exe")
             Else
                 .DeleteDirectory("Data", FileIO.DeleteDirectoryOption.DeleteAllContents)
             End If
             Console.Write("更新安装完成")
             Dim bat As String = ":del" & vbCrLf & "del %1" & vbCrLf & "if exist %1 goto del" & vbCrLf & "del %0"
             My.Computer.FileSystem.WriteAllText("DeleteUpdater.bat", bat, False, Text.Encoding.ASCII)
-            My.Computer.FileSystem.DeleteFile("Updata.exe")
-            Process.Start("Setup.exe")
-            Process.Start("DeleteUpdater.bat", """" & Process.GetCurrentProcess.MainModule.FileName & """")
+            If .FileExists("Setup.exe") = True Then Process.Start("Setup.exe")
+            Process.Start(New ProcessStartInfo With {.FileName = "DeleteUpdater.bat", .Arguments = """" & Process.GetCurrentProcess.MainModule.FileName & """", .Verb = "runas", .WindowStyle = ProcessWindowStyle.Hidden})
         End With
     End Sub
 
